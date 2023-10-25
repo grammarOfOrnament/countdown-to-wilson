@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown to Wilson</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&family=Neuton:wght@400;700;800&family=Oswald:wght@700&family=Playfair+Display:wght@400;700;900&display=swap" rel="stylesheet">
+   
+<!-- Animated BG -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+</head>
+<body>
+<!-- <body id="gradient"> -->
+
+<div class="all-page-content">
+
+    <div class="img-container">
+        <img src="https://www.livehome3d.com/assets/img/articles/design-house/how-to-design-a-house.jpg"> 
+    </div>
+
+    <div class="h1-container">
+        <h1>Moving to Wilson in...</h1>
+    </div>
+
+    <div class="countdown-container">
+        <!-- <div class="countdown"> -->
+            <div>
+                <p id="days" class="countdown-numbers">00</p>
+                <span>Days</span>
+            </div>
+            <div>
+                <p id="hours" class="countdown-numbers">00</p>
+                <span>Hours</span>
+            </div>
+            <div>
+                <p id="minutes" class="countdown-numbers">00</p>
+                <span>Minutes</span>
+            </div>
+            <div>
+                <p id="seconds" class="countdown-numbers">00</p>
+                <span>Seconds</span>
+            </div>
+    </div>
+    
+
+    
+    <script>
+        // COUNTDOWN
+        var countdownDate = new Date("Dec 16, 2023 00:00:00").getTime();
+        var x = setInterval(function(){
+            var now = new Date().getTime();
+            var distance = countdownDate - now;
+    
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+            document.getElementById("days").innerHTML = days;
+            document.getElementById("hours").innerHTML = hours;
+            document.getElementById("minutes").innerHTML = minutes;
+            document.getElementById("seconds").innerHTML = seconds;
+    
+            if(distance < 0){
+                clearInterval(x);
+                document.getElementById("days").innerHTML = "00";
+                document.getElementById("hours").innerHTML = "00";
+                document.getElementById("minutes").innerHTML = "00";
+                document.getElementById("seconds").innerHTML = "00";
+            }
+    
+        },1000);
+
+        // GRADIENTS
+        var colors = new Array(
+            [254,244,232],
+            [255,228,196],
+            [134,96,91],
+            [132,121,121],
+            [155,106,108],
+            [154,135,157]);
+
+            var step = 0;
+            //color table indices for: 
+            // current color left
+            // next color left
+            // current color right
+            // next color right
+            var colorIndices = [0,1,2,3];
+
+            //transition speed
+            var gradientSpeed = 0.002;
+
+            function updateGradient()
+            {
+            
+            if ( $===undefined ) return;
+            
+            var c0_0 = colors[colorIndices[0]];
+            var c0_1 = colors[colorIndices[1]];
+            var c1_0 = colors[colorIndices[2]];
+            var c1_1 = colors[colorIndices[3]];
+
+            var istep = 1 - step;
+            var r1 = Math.round(istep * c0_0[0] + step * c0_1[0]);
+            var g1 = Math.round(istep * c0_0[1] + step * c0_1[1]);
+            var b1 = Math.round(istep * c0_0[2] + step * c0_1[2]);
+            var color1 = "rgb("+r1+","+g1+","+b1+")";
+
+            var r2 = Math.round(istep * c1_0[0] + step * c1_1[0]);
+            var g2 = Math.round(istep * c1_0[1] + step * c1_1[1]);
+            var b2 = Math.round(istep * c1_0[2] + step * c1_1[2]);
+            var color2 = "rgb("+r2+","+g2+","+b2+")";
+
+            $('#gradient').css({
+            background: "-webkit-gradient(linear, left top, right top, from("+color1+"), to("+color2+"))"}).css({
+                background: "-moz-linear-gradient(left, "+color1+" 0%, "+color2+" 100%)"});
+            
+            step += gradientSpeed;
+            if ( step >= 1 )
+            {
+                step %= 1;
+                colorIndices[0] = colorIndices[1];
+                colorIndices[2] = colorIndices[3];
+                
+                //pick two new target color indices
+                //do not pick the same as the current one
+                colorIndices[1] = ( colorIndices[1] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+                colorIndices[3] = ( colorIndices[3] + Math.floor( 1 + Math.random() * (colors.length - 1))) % colors.length;
+                
+            }
+            }
+
+            setInterval(updateGradient,10);
+      </script>
+
+</div>
+
+    
+</body>
+</html>

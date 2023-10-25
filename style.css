@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;900&family=Neuton:wght@400;700;800&display=swap');
+
+.countdown-numbers{
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 0rem;
+    margin-top:0rem;
+}
+
+span{
+    font-family: 'Lato', sans-serif;
+    font-size: 1rem;
+}
+
+.countdown{
+    display: flex;
+    justify-content: center;
+    max-width: 40%;
+    
+}
+
+.countdown-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h1{
+    font-family: "Playfair Display", sans-serif;
+    font-size: 2rem;
+    text-align: center;
+    max-width: 95%;
+    margin-bottom: 0rem;
+    line-height: 3rem;
+    font-weight: 500;
+}
+
+.h1-container{
+    display: flex;
+    justify-content: center;
+}
+
+.img-container{
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20vh; */
+}
+
+img{
+    border-radius: 12px;
+    max-width: 95%;
+}
+
+.all-page-content{
+    display: flex;
+    align-content: space-around;
+    flex-direction: column;
+    margin-top: 25vh;
+    margin-bottom:25vh;
+    /* height: 100vh; */
+    /* background-color: red;  */
+}
+
+/* 760 px or less = Space evenly */
+/* 760 px or more = center AND countdown numbers get margin-right 4 rem */
+
+@media (min-width: 760px) {
+    .countdown-container{
+        justify-content: center;
+    }
+    .countdown-numbers{
+    margin-right: 2rem;
+    margin-left: 2rem;
+    }
+    span{
+        margin-right: 2rem;
+        margin-left: 2rem;
+    }
+}
+
+
+body{
+    background-color: #FEF4E8;
+  padding: 0px;
+  margin: 0px;
+}
+
+#gradient
+{
+ width: 100%;
+ height: 100%;
+ padding: 0px;
+ margin: 0px;
+}
+
